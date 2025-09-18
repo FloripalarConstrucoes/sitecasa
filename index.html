@@ -5,102 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FloripaLar Construções</title>
     <style>
-        /* Reset básico */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-            color: #333;
+            background: #f5f5f5; color: #333;
         }
 
-        header {
-            background: #004d40;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        header { background: #004d40; padding: 20px; display: flex; justify-content: center; align-items: center; }
+        header img { max-height: 80px; }
 
-        header img {
-            max-height: 80px;
-        }
-
-        nav {
-            background: #00796b;
-            text-align: center;
-            padding: 10px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: white;
-            margin: 0 15px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #ffeb3b;
-        }
+        nav { background: #00796b; text-align: center; padding: 10px; }
+        nav a { text-decoration: none; color: white; margin: 0 15px; font-weight: bold; transition: color 0.3s; }
+        nav a:hover { color: #ffeb3b; }
 
         .banner {
             background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') no-repeat center/cover;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-            font-size: 2.5rem;
-            font-weight: bold;
+            height: 400px; display: flex; justify-content: center; align-items: center;
+            color: white; text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            font-size: 2.5rem; font-weight: bold;
         }
 
-        .section {
-            padding: 50px;
-            text-align: center;
-        }
-
-        .section h2 {
-            margin-bottom: 20px;
-            color: #004d40;
-        }
+        .section { padding: 50px; text-align: center; }
+        .section h2 { margin-bottom: 20px; color: #004d40; }
 
         .galeria {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            gap: 15px; margin-top: 20px;
         }
 
         .galeria img {
-            width: 100%;
-            border-radius: 10px;
-            transition: transform 0.3s;
+            width: 100%; border-radius: 10px; transition: transform 0.3s;
+            aspect-ratio: 4 / 3; object-fit: cover;
         }
+        .galeria img:hover { transform: scale(1.05); }
 
-        .galeria img:hover {
-            transform: scale(1.05);
-        }
+        .sobre { background: #e0f2f1; padding: 40px; border-radius: 10px; margin-top: 30px; }
 
-        .sobre {
-            background: #e0f2f1;
-            padding: 40px;
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-
-        footer {
-            background: #004d40;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
+        footer { background: #004d40; color: white; text-align: center; padding: 20px; margin-top: 40px; }
     </style>
 </head>
 <body>
@@ -114,6 +57,8 @@
     <nav>
         <a href="#casa">A Casa</a>
         <a href="#galeria">Galeria</a>
+        <a href="#clima">Clima</a>
+        <a href="#plantas">Plantas</a>
         <a href="#sobre">Sobre Nós</a>
         <a href="#contato">Contato</a>
     </nav>
@@ -126,10 +71,7 @@
     <!-- Seção Casa -->
     <section class="section" id="casa">
         <h2>A Casa dos Seus Sonhos</h2>
-        <p>Projetamos casas em Florianópolis que são uma celebração da natureza catarinense e do estilo de vida local. Nossos projetos buscam uma integração perfeita entre o interior e o exterior, com amplas aberturas para aproveitar 
-			a luz natural e a ventilação, conectando você à beleza da Mata Atlântica e ao mar. Priorizamos materiais sustentáveis e de origem local para garantir beleza e durabilidade. 
-			Cada espaço é pensado para o seu conforto e funcionalidade, criando um refúgio onde o design moderno se alinha à praticidade do seu dia a dia. O resultado é um lar que convida ao 
-			relaxamento e à criação de memórias, em perfeita harmonia com a essência de Florianópolis.</p>
+        <p>Projetamos casas em Florianópolis que são uma celebração da natureza catarinense e do estilo de vida local...</p>
     </section>
 
     <!-- Galeria -->
@@ -143,24 +85,56 @@
         </div>
     </section>
 
+    <!-- Clima -->
+    <section class="section" id="clima">
+        <h2>Clima do Bairro Trindade em Florianópolis</h2>
+        <p>A influência da maritimidade condiciona a cidade a um <strong>clima subtropical úmido</strong>...</p>
+        <h3>Temperatura</h3>
+        <ul style="list-style: none; padding: 0;">
+            <li>🌞 <strong>Verão:</strong> 20°C a 30°C (média de 25°C)</li>
+            <li>❄️ <strong>Inverno:</strong> 0°C a 10°C (média de 5°C)</li>
+            <li>🌧️ Chuvas regulares ao longo do ano</li>
+        </ul>
+    </section>
+
+    <!-- Plantas -->
+    <section class="section" id="plantas">
+        <h2>Plantas Típicas da Região</h2>
+        <p>Os moradores da Trindade em Florianópolis valorizam espécies que refletem a beleza...</p>
+
+        <ul style="list-style: none; padding: 0;">
+            <li>🌴 <strong>Palmeira Jerivá</strong></li>
+            <li>🌺 <strong>Hibisco</strong></li>
+            <li>🌿 <strong>Samambaias</strong></li>
+            <li>🌸 <strong>Orquídeas</strong></li>
+            <li>🍃 <strong>Costela-de-Adão</strong></li>
+        </ul>
+
+        <!-- Galeria de plantas com imagens locais -->
+        <div class="galeria">
+            <img src="jeriva.jpeg" alt="Palmeira Jerivá">
+            <img src="hibisco.jpeg" alt="Hibisco">
+            <img src="samambaia.png" alt="Samambaia">
+            <img src="orquidea.webp" alt="Orquídea">
+            <img src="costela.jpeg" alt="Costela-de-Adão">
+        </div>
+    </section>
+
     <!-- Sobre -->
     <section class="section sobre" id="sobre">
         <h2>Sobre a FloripaLar Construções</h2>
-        <p>Na <strong>FloripaLar Construções</strong> , sabemos que ter um lar é mais que ter um teto, é ter um lugar para chamar de seu, um refúgio 
-		para construir memórias. É por isso que nos dedicamos a tornar o 
-		sonho da casa própria uma realidade palpável para você e sua família.
-		Oferecemos soluções em construção que combinam qualidade, acessibilidade e o conforto que você merece. Nosso objetivo é simplificar o caminho até
-		a sua nova casa, com projetos pensados para o seu bem-estar e opções que cabem no seu bolso.
-
-Venha construir o seu amanhã com a gente!</p>
+        <p>Na <strong>FloripaLar Construções</strong> sabemos que ter um lar é mais que ter um teto...</p>
     </section>
 
     <!-- Rodapé -->
     <footer id="contato">
-        <p>📍 Florianópolis - SC | 📞 (48) 6912-5867 | ✉️ contato@floripalar.com</p>
+        <p>📍 Florianópolis - SC | 📞 (48) 6912-5867 | ✉ contato@floripalar.com</p>
         <p>&copy; 2025 FloripaLar Construções - Todos os direitos reservados.</p>
     </footer>
 
 </body>
 </html>
+
+
+
 
