@@ -1,137 +1,309 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FloripaLar Construções</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FloripaLar Construções</title>
+  <meta name="description" content="FloripaLar Construções – casas em Florianópolis com foco em conforto, natureza e qualidade. Veja fotos, clima da Trindade e plantas típicas." />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    :root {
+      --brand-900: #003a32;
+      --brand-800: #004d40;
+      --brand-700: #00695c;
+      --brand-600: #00796b;
+      --brand-50:  #e0f2f1;
+      --accent:    #ffeb3b;
+      --text:      #333;
+      --bg:        #f5f5f5;
+      --card:      #ffffff;
+      --shadow:    0 10px 25px rgba(0,0,0,.08);
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5; color: #333;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif; color: var(--text); background: var(--bg); }
 
-        header { background: #004d40; padding: 20px; display: flex; justify-content: center; align-items: center; }
-        header img { max-height: 80px; }
+    /* Header */
+    .topbar { position: sticky; top: 0; z-index: 50; background: var(--brand-800); box-shadow: var(--shadow); }
+    header { max-width: 1200px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .logo { display:flex; align-items:center; gap:12px; color:#fff; text-decoration:none; }
+    .logo img { max-height: 64px; width: auto; }
+    .brand-name { font-weight: 800; letter-spacing: .3px; }
 
-        nav { background: #00796b; text-align: center; padding: 10px; }
-        nav a { text-decoration: none; color: white; margin: 0 15px; font-weight: bold; transition: color 0.3s; }
-        nav a:hover { color: #ffeb3b; }
+    /* Nav */
+    nav { background: var(--brand-600); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; }
+    .links { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+    .links a { text-decoration: none; color: #fff; font-weight: 600; padding: 8px 10px; border-radius: 8px; transition: background .2s ease, color .2s ease; }
+    .links a:hover, .links a[aria-current="true"] { background: rgba(255,255,255,.15); color: var(--accent); }
+    .menu-btn { display:none; background: transparent; border: 0; color: #fff; font-size: 1rem; padding: 8px 12px; border-radius: 8px; cursor: pointer; }
 
-        .banner {
-            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') no-repeat center/cover;
-            height: 400px; display: flex; justify-content: center; align-items: center;
-            color: white; text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-            font-size: 2.5rem; font-weight: bold;
-        }
+    @media (max-width: 760px){
+      .links { display: none; width: 100%; }
+      .links.open { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-top: 10px; }
+      .menu-btn { display: inline-block; }
+    }
 
-        .section { padding: 50px; text-align: center; }
-        .section h2 { margin-bottom: 20px; color: #004d40; }
+    /* Banner */
+    .banner { position: relative; height: 56vh; min-height: 360px; display: grid; place-items: center; color: #fff; text-align: center; }
+    .banner::before { content:""; position:absolute; inset:0; background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat; filter: brightness(.55); }
+    .banner > div { position: relative; padding: 0 20px; max-width: 900px; }
+    .banner h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; text-shadow: 2px 2px 12px rgba(0,0,0,.55); }
+    .cta { margin-top: 18px; display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #222; font-weight: 800; text-decoration: none; padding: 12px 18px; border-radius: 999px; box-shadow: var(--shadow); }
 
-        .galeria {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px; margin-top: 20px;
-        }
+    /* Sections */
+    .section { padding: 56px 20px; }
+    .section .wrap { max-width: 1200px; margin: 0 auto; }
+    .section h2 { color: var(--brand-800); margin-bottom: 14px; font-size: clamp(1.6rem, 2.5vw, 2rem); }
+    .section p { opacity: .9; }
 
-        .galeria img {
-            width: 100%; border-radius: 10px; transition: transform 0.3s;
-            aspect-ratio: 4 / 3; object-fit: cover;
-        }
-        .galeria img:hover { transform: scale(1.05); }
+    /* Cards / blocks */
+    .card { background: var(--card); border-radius: 14px; padding: 18px; box-shadow: var(--shadow); }
 
-        .sobre { background: #e0f2f1; padding: 40px; border-radius: 10px; margin-top: 30px; }
+    /* Gallery */
+    .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 16px; }
+    .galeria figure { overflow: hidden; border-radius: 12px; background: #ddd; }
+    .galeria img { width: 100%; height: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform .35s ease; }
+    .galeria figure:hover img { transform: scale(1.05); }
+    .galeria figcaption { display:none; }
 
-        footer { background: #004d40; color: white; text-align: center; padding: 20px; margin-top: 40px; }
-    </style>
+    /* Special blocks */
+    .sobre { background: var(--brand-50); border: 1px solid #d3e9e7; }
+    .list { list-style: none; padding: 0; display: grid; gap: 8px; }
+    .list li { display: flex; align-items: center; gap: 8px; }
+
+    /* FAQ */
+    .faq { max-width: 1200px; margin: 0 auto; }
+    .faq details { background: var(--card); border: 1px solid #dfe7e6; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; box-shadow: var(--shadow); }
+    .faq summary { cursor: pointer; font-weight: 700; color: var(--brand-800); }
+    .faq p { margin-top: 8px; color: #555; }
+
+    /* Footer */
+    footer { background: var(--brand-800); color: #fff; text-align: center; padding: 28px 20px; margin-top: 40px; }
+    footer a { color: #fff; text-decoration: underline; }
+
+    /* Utility */
+    .grid { display:grid; gap: 16px; grid-template-columns: repeat(12,1fr); }
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+    @media (max-width: 900px){ .col-6 { grid-column: span 12; } }
+
+    .top { position: fixed; right: 16px; bottom: 16px; background: var(--brand-700); color: #fff; padding: 10px 12px; border-radius: 999px; text-decoration: none; font-weight: 700; box-shadow: var(--shadow); opacity:.95; }
+  </style>
 </head>
 <body>
+  <!-- Top anchor -->
+  <div id="top"></div>
 
-    <!-- Cabeçalho -->
+  <!-- Topbar + Header -->
+  <div class="topbar" role="banner">
     <header>
-        <img src="logo.png" alt="Logo FloripaLar Construções">
+      <a class="logo" href="#top" aria-label="Voltar ao topo">
+        <img src="logo.png" alt="Logo FloripaLar Construções" />
+        <span class="brand-name">FloripaLar Construções</span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainLinks">Menu</button>
     </header>
-
-    <!-- Menu -->
-    <nav>
-        <a href="#casa">A Casa</a>
-        <a href="#galeria">Galeria</a>
-        <a href="#clima">Clima</a>
-        <a href="#plantas">Plantas</a>
-        <a href="#sobre">Sobre Nós</a>
-        <a href="#contato">Contato</a>
+    <nav aria-label="Navegação principal">
+      <div class="nav-inner">
+        <div class="links" id="mainLinks">
+          <a href="#casa">A Casa</a>
+          <a href="#galeria">Galeria</a>
+          <a href="#clima">Clima</a>
+          <a href="#plantas">Plantas</a>
+          <a href="#sobre">Sobre Nós</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </div>
     </nav>
+  </div>
 
-    <!-- Banner -->
-    <section class="banner">
-        Seu novo lar espera por você
-    </section>
+  <!-- Banner -->
+  <section class="banner" role="img" aria-label="Casa moderna em Florianópolis">
+    <div>
+      <h1>Seu novo lar espera por você</h1>
+      <a class="cta" href="https://wa.me/554869125867" target="_blank" rel="noopener">Fale no WhatsApp</a>
+    </div>
+  </section>
 
-    <!-- Seção Casa -->
-    <section class="section" id="casa">
+  <!-- A Casa -->
+  <section class="section" id="casa">
+    <div class="wrap grid">
+      <div class="col-6">
         <h2>A Casa dos Seus Sonhos</h2>
-        <p>Projetamos casas em Florianópolis que são uma celebração da natureza catarinense e do estilo de vida local...</p>
-    </section>
+        <p>Projetamos casas em Florianópolis que celebram a natureza catarinense e o estilo de vida local. Integramos ventilação cruzada, iluminação natural e materiais adequados ao clima subtropical úmido para conforto o ano todo.</p>
+      </div>
+      <div class="col-6 card">
+        <ul class="list">
+          <li>🏠 Plantas inteligentes com fluxo funcional</li>
+          <li>🌬️ Ventilação cruzada e conforto térmico</li>
+          <li>🌊 Materiais resistentes à maritimidade</li>
+          <li>🛠️ Acompanhamento de obra e pós-obra</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <!-- Galeria -->
-    <section class="section" id="galeria">
-        <h2>Galeria de Imagens</h2>
-        <div class="galeria">
-            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Casa 1">
-            <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6" alt="Casa 2">
-            <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227" alt="Casa 3">
-            <img src="foto1.jpg" alt="Foto 4">
-        </div>
-    </section>
+  <!-- Galeria -->
+  <section class="section" id="galeria">
+    <div class="wrap">
+      <h2>Galeria de Imagens</h2>
+      <div class="galeria" aria-label="Galeria de projetos">
+        <figure>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Fachada contemporânea com garagem" />
+          <figcaption>Fachada contemporânea</figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6" alt="Área de estar integrada à cozinha" />
+          <figcaption>Living integrado</figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1613977257363-707ba9348227" alt="Cozinha minimalista iluminada" />
+          <figcaption>Cozinha minimalista</figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" src="foto1.jpg" alt="Projeto FloripaLar" />
+          <figcaption>Projeto FloripaLar</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-    <!-- Clima -->
-    <section class="section" id="clima">
+  <!-- Clima -->
+  <section class="section" id="clima">
+    <div class="wrap grid">
+      <div class="col-6">
         <h2>Clima do Bairro Trindade em Florianópolis</h2>
-        <p>A influência da maritimidade condiciona a cidade a um <strong>clima subtropical úmido</strong>...</p>
-        <h3>Temperatura</h3>
-        <ul style="list-style: none; padding: 0;">
-            <li>🌞 <strong>Verão:</strong> 20°C a 30°C (média de 25°C)</li>
-            <li>❄️ <strong>Inverno:</strong> 0°C a 10°C (média de 5°C)</li>
-            <li>🌧️ Chuvas regulares ao longo do ano</li>
+        <p>A influência da maritimidade condiciona a cidade a um <strong>clima subtropical úmido</strong> (mesotérmico úmido). As chuvas são bem distribuídas ao longo do ano, somando entre <strong>1.400 e 1.600&nbsp;mm</strong>, e as temperaturas são amenas.</p>
+        <h3 style="margin-top:12px">Temperatura</h3>
+        <ul class="list" aria-label="Médias de temperatura">
+          <li>🌞 <strong>Verão:</strong> 20&nbsp;°C a 30&nbsp;°C (média de 25&nbsp;°C)</li>
+          <li>❄️ <strong>Inverno:</strong> 0&nbsp;°C a 10&nbsp;°C (média de 5&nbsp;°C)</li>
+          <li>🌧️ Chuvas regulares ao longo do ano, com maior intensidade no verão</li>
         </ul>
-    </section>
+      </div>
+      <div class="col-6 card">
+        <p><strong>Médias gerais:</strong> temperatura anual entre 20&nbsp;°C e 24&nbsp;°C; precipitação anual em torno de <strong>1506&nbsp;mm</strong>.</p>
+        <p style="margin-top:8px; opacity:.9">Esses parâmetros orientam o projeto para conforto térmico e durabilidade dos materiais.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Plantas -->
-    <section class="section" id="plantas">
-        <h2>Plantas Típicas da Região</h2>
-        <p>Os moradores da Trindade em Florianópolis valorizam espécies que refletem a beleza...</p>
+  <!-- Plantas -->
+  <section class="section" id="plantas">
+    <div class="wrap">
+      <h2>Plantas Típicas da Região</h2>
+      <p>Espécies queridas pelos moradores da Trindade que combinam com o clima local e valorizam fachadas e jardins.</p>
+      <ul class="list" style="margin-top: 8px; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));">
+        <li>🌴 <strong>Palmeira Jerivá</strong></li>
+        <li>🌺 <strong>Hibisco</strong></li>
+        <li>🌿 <strong>Samambaias</strong></li>
+        <li>🌸 <strong>Orquídeas</strong></li>
+        <li>🍃 <strong>Costela-de-Adão</strong></li>
+      </ul>
 
-        <ul style="list-style: none; padding: 0;">
-            <li>🌴 <strong>Palmeira Jerivá</strong></li>
-            <li>🌺 <strong>Hibisco</strong></li>
-            <li>🌿 <strong>Samambaias</strong></li>
-            <li>🌸 <strong>Orquídeas</strong></li>
-            <li>🍃 <strong>Costela-de-Adão</strong></li>
-        </ul>
+      <!-- Galeria de plantas com caminho local (conforme seu pedido) -->
+      <div class="galeria" style="margin-top:16px" aria-label="Galeria de plantas típicas">
+        <figure>
+          <img loading="lazy" src="img/jeriva.jpeg" alt="Palmeira Jerivá" />
+          <figcaption>Palmeira Jerivá</figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" src="img/hibisco.jpeg" alt="Hibisco" />
+          <figcaption>Hibisco</figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" src="img/samambaia.png" alt="Samambaia" />
+          <figcaption>Samambaia</figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" src="img/orquidea.webp" alt="Orquídea" />
+          <figcaption>Orquídea</figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" src="img/costela.jpeg" alt="Costela-de-Adão" />
+          <figcaption>Costela-de-Adão</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-        <!-- Galeria de plantas com imagens locais -->
-        <div class="galeria">
-            <img src="jeriva.jpeg" alt="Palmeira Jerivá">
-            <img src="hibisco.jpeg" alt="Hibisco">
-            <img src="samambaia.png" alt="Samambaia">
-            <img src="orquidea.webp" alt="Orquídea">
-            <img src="costela.jpeg" alt="Costela-de-Adão">
-        </div>
-    </section>
+  <!-- FAQ inserido -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <h2>Perguntas Frequentes</h2>
+      <div class="faq">
+        <details>
+          <summary>Onde fica a Trindade?</summary>
+          <p>A Trindade é um bairro central de Florianópolis, com acesso fácil às principais avenidas e serviços.</p>
+        </details>
+        <details>
+          <summary>O que fazer na região?</summary>
+          <p>Opções de gastronomia, parques, centros culturais e comércio ativo.</p>
+        </details>
+        <details>
+          <summary>Como é morar na Trindade?</summary>
+          <p>Praticidade, mobilidade e qualidade de vida próximas à UFSC.</p>
+        </details>
+        <details>
+          <summary>Quais metragens das plantas?</summary>
+          <p>Unidades de 78 a 120 m² e coberturas de 150 a 180 m².</p>
+        </details>
+        <details>
+          <summary>Quantos dormitórios?</summary>
+          <p>Configurações de 2 a 4 dormitórios, com suítes.</p>
+        </details>
+        <details>
+          <summary>Por que investir na Trindade?</summary>
+          <p>Região valorizada com infraestrutura completa e alta demanda.</p>
+        </details>
+      </div>
+    </div>
+  </section>
 
-    <!-- Sobre -->
-    <section class="section sobre" id="sobre">
-        <h2>Sobre a FloripaLar Construções</h2>
-        <p>Na <strong>FloripaLar Construções</strong> sabemos que ter um lar é mais que ter um teto...</p>
-    </section>
+  <!-- Sobre -->
+  <section class="section" id="sobre">
+    <div class="wrap card">
+      <h2>Sobre a FloripaLar Construções</h2>
+      <p>Na <strong>FloripaLar Construções</strong>, lar vai além de quatro paredes: é conforto, funcionalidade e identidade. Do anteprojeto à entrega, cuidamos de cada detalhe com transparência e compromisso.</p>
+    </div>
+  </section>
 
-    <!-- Rodapé -->
-    <footer id="contato">
-        <p>📍 Florianópolis - SC | 📞 (48) 6912-5867 | ✉ contato@floripalar.com</p>
-        <p>&copy; 2025 FloripaLar Construções - Todos os direitos reservados.</p>
-    </footer>
+  <!-- Contato / Rodapé -->
+  <footer id="contato" role="contentinfo">
+    <p>📍 Florianópolis - SC | 📞 (48) 6912-5867 | ✉ <a href="mailto:contato@floripalar.com">contato@floripalar.com</a></p>
+    <p style="opacity:.9">&copy; 2025 FloripaLar Construções — Todos os direitos reservados.</p>
+  </footer>
 
+  <a class="top" href="#top" aria-label="Voltar ao topo">↑</a>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const links = document.getElementById('mainLinks');
+    menuBtn?.addEventListener('click', () => {
+      const isOpen = links.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Highlight active nav link on scroll
+    const sections = ['casa','galeria','clima','plantas','faq','sobre','contato'].map(id => document.getElementById(id)).filter(Boolean);
+    const anchors = Array.from(document.querySelectorAll('.links a'));
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          anchors.forEach(a => a.setAttribute('aria-current','false'));
+          const active = anchors.find(a => a.getAttribute('href') === `#${id}`);
+          if (active) active.setAttribute('aria-current','true');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+
+    sections.forEach(s => io.observe(s));
+  </script>
 </body>
 </html>
 
