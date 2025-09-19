@@ -112,6 +112,7 @@
           <a href="#galeria">Galeria</a>
           <a href="#clima">Clima</a>
           <a href="#plantas">Plantas</a>
+          <a href="#mcmv">Minha Casa Minha Vida</a><!-- NEW -->
           <a href="#sobre">Sobre Nós</a>
           <a href="#contato">Contato</a>
         </div>
@@ -229,7 +230,34 @@
     </div>
   </section>
 
-  <!-- FAQ inserido -->
+  <!-- MCMV (NOVO) -->
+  <section class="section" id="mcmv">
+    <div class="wrap card sobre">
+      <h2>Minha Casa, Minha Vida (MCMV)</h2>
+      <p>O programa Minha Casa, Minha Vida (MCMV) é uma iniciativa do Governo Federal que oferece condições especiais, como subsídios e juros baixos, para facilitar o acesso à moradia para famílias de baixa e média renda. O funcionamento varia de acordo com a renda familiar, dividida em faixas específicas.</p>
+
+      <h3 style="margin-top:12px">Faixas de renda do Minha Casa, Minha Vida</h3>
+      <p>Os valores e regras podem ser diferentes para áreas urbanas e rurais:</p>
+      <ul class="list" style="margin-top:8px">
+        <li><strong>Faixa 1 (Urbana):</strong> renda familiar bruta mensal de até <strong>R$ 2.850</strong>.</li>
+        <li><strong>Área Rural (Faixa 1):</strong> renda familiar bruta anual de até <strong>R$ 40.000</strong>.</li>
+        <li><strong>Faixa 2 (Urbana):</strong> renda familiar bruta mensal de <strong>R$ 2.850,01</strong> a <strong>R$ 4.700</strong>.</li>
+        <li><strong>Área Rural (Faixa 2):</strong> renda familiar bruta anual de <strong>R$ 40.000,01</strong> a <strong>R$ 66.600</strong>.</li>
+        <li><strong>Faixa 3 (Urbana):</strong> renda familiar bruta mensal de <strong>R$ 4.700,01</strong> a <strong>R$ 8.600</strong>.</li>
+        <li><strong>Área Rural (Faixa 3):</strong> renda familiar bruta anual de <strong>R$ 66.600,01</strong> a <strong>R$ 96.000</strong>.</li>
+        <li><strong>Faixa Classe Média (Nova):</strong> famílias com renda mensal de até <strong>R$ 12.000</strong> podem financiar imóveis de até <strong>R$ 500.000</strong> com taxas de juros competitivas, mas sem subsídio.</li>
+      </ul>
+
+      <h3 style="margin-top:12px">Como funciona para cada faixa</h3>
+      <ul class="list" style="margin-top:8px">
+        <li>Para famílias da Faixa 1 (urbana e rural): o programa pode oferecer moradia com subsídio muito alto, em que a família não precisa pagar o imóvel ou paga parcelas mínimas.</li>
+        <li>A seleção das famílias é feita por meio de cadastros na <strong>prefeitura</strong> ou pelo <strong>Cadastro Único (CadÚnico)</strong>.</li>
+        <li>No caso de imóveis em parceria com entidades, a própria entidade organizadora é responsável pela mobilização, organização e elaboração do projeto junto à Caixa.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
   <section class="section" id="faq">
     <div class="wrap">
       <h2>Perguntas Frequentes</h2>
@@ -270,7 +298,7 @@
 
 Oferecemos soluções em construção que combinam qualidade, acessibilidade e o conforto que você merece. Nosso objetivo é simplificar o caminho até a sua nova casa, com projetos pensados para o seu bem-estar e opções que cabem no seu bolso.
 
-Venha construir o seu amanhã com a gente!</p>
+Venha construir o seu amanhã com a gente!</p>
     </div>
   </section>
 
@@ -292,7 +320,8 @@ Venha construir o seu amanhã com a gente!</p>
     });
 
     // Highlight active nav link on scroll
-    const sections = ['casa','galeria','clima','plantas','faq','sobre','contato'].map(id => document.getElementById(id)).filter(Boolean);
+    const sections = ['casa','galeria','clima','plantas','mcmv','faq','sobre','contato'] // NEW: mcmv
+      .map(id => document.getElementById(id)).filter(Boolean);
     const anchors = Array.from(document.querySelectorAll('.links a'));
 
     const io = new IntersectionObserver((entries) => {
@@ -310,6 +339,11 @@ Venha construir o seu amanhã com a gente!</p>
   </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
